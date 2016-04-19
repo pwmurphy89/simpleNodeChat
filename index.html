@@ -3,9 +3,10 @@
 <head>
 	<title></title>
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript" src="">
 		var socketio = io.connect('127.0.0.1:8000');
 		socketio.on('message_to_client', function(data){
+			document.getElementById("numUsers").innerHTML = ('<div class="numUsers">' + data.numUsers + '</div>')
 			document.getElementById('chat-window').innerHTML += ('<div class="im">' + data.message + "</div>");
 			console.log(data);
 		})
@@ -19,11 +20,11 @@
 	</script>
 </head>
 <body>
-	<h1>Hello</h1>
-	<div id="chat-window"></div>
-	<form onsubmit ="sendMessage();">
-		<input type="text" id="message" placeholder="type your message here">
-	</form>
-	
+	<h1></h1>
+	<div id="chat-window">
+		<form onsubmit ="sendMessage();">
+			<input type="text" id="message" placeholder="type your message here">
+		</form>
+	</div>
 </body>
 </html>

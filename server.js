@@ -11,10 +11,12 @@ var server = http.createServer(function(request,response){
 
 });
 var io = require('socket.io').listen(server);
+var numUsers = 0;
 io.sockets.on('connect',function(socket){
-	console.log("someone connected to server");
+	numUsers ++;
+	console.log(numUsers);
 	socket.on('message_to_server', function(data){
-		io.sockets.emit('message_to_client',{message: data.message})
+		io.sockets.emit('message_to_client',{message: data.message, numUsers: numUsers })
 		})
 	})
 
